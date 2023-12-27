@@ -10,10 +10,50 @@ import java.util.Random;
 public class OneOfEachStats {
 	public static void main (String[] args) {
 		// Gets the two command-line arguments
-		int T = Integer.parseInt(args[0]);
+		int T = Integer.parseInt(args[0]); // Gets the number of families to simulate
 		int seed = Integer.parseInt(args[1]);
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
+		int totalChildren = 0; // Counts the total number of children that were generated in the simulation
+		int b = 0; // b is a variable that represents the number of families with 2 children
+		int c = 0; // c is a variable that represents the number of families with 3 children
+		int d = 0; // d is a variable that represents the number of families with 4 children or more
+		for (int i = 1; i <= T; i++) {
+			int numOfBoys = 0;
+			int numOfGirls = 0;
+			// Generates new children until the family has at least one child of each gender.
+			while (numOfBoys == 0 || numOfGirls == 0) {
+				double rnd = generator.nextDouble();
+				if (rnd < 0.5){
+					numOfBoys ++;
+				} else {
+					numOfGirls++;
+				}
+			}
+			int numOfChildren = numOfBoys + numOfGirls;
+			totalChildren += numOfChildren;
+			if (numOfChildren == 2) {
+				b++;
+			} else if (numOfChildren == 3) {
+				c++;
+			} else {
+				d++;
+			}
+		}
+		double average = (totalChildren/(double) T); // Computes the average number of children to have at least one child of each gender.
+		System.out.println("Average: " + average + " children to get at least one of each gender.");
+		System.out.println("Number of families with 2 children: " + b);
+		System.out.println("Number of families with 3 children: " + c);
+		System.out.println("Number of families with 4 or more children: " + d);
+		String mostCommon = "2"; // Saves the the most common number of children in a family as a string
+		if ((c > b) || (d > b)) {
+			if (d > c) {
+				mostCommon = "4 or more";
+			} else {
+				mostCommon = "3";
+			}
+		}
+		System.out.println("The most common number of children is " + mostCommon + ".");
 		
 		//// In the previous version of this program, you used a statement like:
 		//// double rnd = Math.random();
