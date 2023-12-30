@@ -30,7 +30,7 @@ public class OneOfEachStats {
 					numOfGirls++;
 				}
 			}
-			int numOfChildren = numOfBoys + numOfGirls;
+			int numOfChildren = numOfBoys + numOfGirls; // Counts the total number of children that were born in each family
 			totalChildren += numOfChildren;
 			if (numOfChildren == 2) {
 				b++;
