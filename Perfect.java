@@ -15,6 +15,7 @@ public class Perfect {
 		for (int i = 2; i <= n / 2; i++) {
 			if (n % i == 0){
 				sum += i;
+				str += " + " + i;
 			}
 		}
 		// Checks if the given number is perfect, and prints a suitable response
