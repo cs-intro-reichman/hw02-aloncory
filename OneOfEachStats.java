@@ -10,15 +10,22 @@ import java.util.Random;
 public class OneOfEachStats {
 	public static void main (String[] args) {
 		// Gets the two command-line arguments
-		int T = Integer.parseInt(args[0]); // Gets the number of families to simulate
+		/* 
+  			#feedback: 
+     			It's not common to use capital letters at the beggining of variables name,
+			especially one letter which probably not descrive good the variable porpuse.
+   			Use meaningful name, then you don't have to add comments to explain it.
+  		*/
+		int families = Integer.parseInt(args[0]); // Gets the number of families to simulate
 		int seed = Integer.parseInt(args[1]);
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
 		int totalChildren = 0; // Counts the total number of children that were generated in the simulation
-		int b = 0; // b is a variable that represents the number of families with 2 children
-		int c = 0; // c is a variable that represents the number of families with 3 children
-		int d = 0; // d is a variable that represents the number of families with 4 children or more
-		for (int i = 1; i <= T; i++) {
+		// #feedback: wouldn't it be easier to give good names to the variables instead put a comment beside it?
+		int with2Childs = 0; // b is a variable that represents the number of families with 2 children
+		int with3Childs = 0; // c is a variable that represents the number of families with 3 children
+		int moreThan3Childs = 0; // d is a variable that represents the number of families with 4 children or more
+		for (int i = 1; i <= families; i++) {
 			int numOfBoys = 0;
 			int numOfGirls = 0;
 			// Generates new children until the family has at least one child of each gender.
@@ -33,21 +40,21 @@ public class OneOfEachStats {
 			int numOfChildren = numOfBoys + numOfGirls; // Counts the total number of children that were born in each family
 			totalChildren += numOfChildren;
 			if (numOfChildren == 2) {
-				b++;
+				with2Childs++;
 			} else if (numOfChildren == 3) {
-				c++;
+				with3Childs++;
 			} else {
-				d++;
+				moreThan3Child++;
 			}
 		}
-		double average = (totalChildren/(double) T); // Computes the average number of children to have at least one child of each gender.
+		double average = (totalChildren/(double) families); // Computes the average number of children to have at least one child of each gender.
 		System.out.println("Average: " + average + " children to get at least one of each gender.");
-		System.out.println("Number of families with 2 children: " + b);
-		System.out.println("Number of families with 3 children: " + c);
-		System.out.println("Number of families with 4 or more children: " + d);
+		System.out.println("Number of families with 2 children: " + with2Child);
+		System.out.println("Number of families with 3 children: " + with3Childs);
+		System.out.println("Number of families with 4 or more children: " + moreThan3Childs);
 		String mostCommon = "2"; // Saves the the most common number of children in a family as a string
-		if ((c > b) || (d > b)) {
-			if (d > c) {
+		if ((with3Childs > with2Childs) || (moreThan3Childs > with2Childs)) {
+			if (moreThan3Childs > with3Childs) {
 				mostCommon = "4 or more";
 			} else {
 				mostCommon = "3";
