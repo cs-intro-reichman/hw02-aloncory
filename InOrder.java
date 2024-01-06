@@ -11,6 +11,6 @@ public class InOrder {
 			System.out.print(next + " "); // Prints the first random integer
 			last = next;
 			next = (int) (10 * Math.random());// Generates the next random integer in the range [0,10)
-		} while (m >= n); // Checks if the next integer is not less than the last integer that was printed.
+		} while (next >= last); // Checks if the next integer is not less than the last integer that was printed.
 	}
 }
